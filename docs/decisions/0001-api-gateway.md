@@ -1,6 +1,6 @@
 # API Gateway
 
-* Status: proposed
+* Status: accepted
 * Deciders: Nebur Alvarez
 * Date: 2023-06-11
 
