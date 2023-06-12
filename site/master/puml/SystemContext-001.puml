@@ -1,0 +1,20 @@
+@startuml
+set separator none
+title Software Difusión de Contenidos - System Context
+
+left to right direction
+
+!include <C4/C4>
+!include <C4/C4_Context>
+
+Person(ComunidadDCCUniversitariaypublicoengeneral, "Comunidad DCC, Universitaria y publico en general", "", $tags="")
+Person(ÁreadeDifusión, "Área de Difusión", "", $tags="")
+Person(ÁreadeSistemas, "Área de Sistemas", "", $tags="")
+System(SoftwareDifusióndeContenidos, "Software Difusión de Contenidos", "Gestión de contenidos para la Universidad", $tags="")
+
+Rel_D(ÁreadeDifusión, SoftwareDifusióndeContenidos, "Publica y Gestiona Contenido de Difusión", $tags="")
+Rel_D(ÁreadeSistemas, SoftwareDifusióndeContenidos, "Administra y opera la infraestructura", $tags="")
+Rel_D(ComunidadDCCUniversitariaypublicoengeneral, SoftwareDifusióndeContenidos, "Consume Contenido", $tags="")
+
+SHOW_LEGEND(true)
+@enduml

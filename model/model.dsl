@@ -1,12 +1,18 @@
+
 workspace "Sistema de gestión de Contenidos" {
 
     model {
         user = person "Comunidad DCC, Universitaria y publico en general"
         adminUser = person "Área de Difusión"
         sysadmin = person "Área de Sistemas"
-        softwareSystem = softwareSystem "Software Difusión de Contenidos" {
+
+        softwareSystem = softwareSystem "Software Difusión de Contenidos" "Gestión de contenidos para la Universidad" "Contenido difusión blog dinámico" {
+            !docs docs
+            !adrs adrs
+
             webapp = container "Sitio Web Publico" "" "nextjs" {
                 user -> this "Consume Contenido"   
+                user -> this "Comenta Post"
                 adminUser -> this "Publica y Gestiona Contenido de Difusión"
                 sysadmin -> this "Administra y opera la infraestructura"
             }
