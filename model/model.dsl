@@ -29,7 +29,7 @@ workspace "Sistema de gestión de Contenidos" {
             ucampus = container "U-Campus"
             upaper = container "U-Papers"
             broker = container "Message Broker"{
-                pubUCampus = component "Publicador U-Campus "
+                pubUCampus = component "Publicador U-Campus"
                 pubUPaper = component "Publicador U-Paper"
                 subUCampus = component "Subcriptor U-Campus"
                 subUPaper = component "Subcriptor U-Paper"
