@@ -1,0 +1,26 @@
+@startuml
+set separator none
+title Software Difusión de Contenidos - System Context
+
+left to right direction
+
+!include <C4/C4>
+!include <C4/C4_Context>
+
+skinparam svgDimensionStyle false
+skinparam preserveAspectRatio meet
+Person(ComunidadDCCUniversitariaypublicoengeneral, "Comunidad DCC, Universitaria y publico en general", "", $tags="")
+Person(ÁreadeDifusión, "Área de Difusión", "", $tags="")
+Person(ÁreadeSistemas, "Área de Sistemas", "", $tags="")
+Person(Docentes, "Docentes", "", $tags="")
+System(APIGateway, "API Gateway", "Plataforma para ejecución de API", $tags="")[[../../api-gateway/context/]]
+System(SoftwareDifusióndeContenidos, "Software Difusión de Contenidos", "Gestión de contenidos para la Universidad", $tags="")[[../container/]]
+
+Rel_D(ComunidadDCCUniversitariaypublicoengeneral, SoftwareDifusióndeContenidos, "Consume Contenido", $tags="")
+Rel_D(Docentes, SoftwareDifusióndeContenidos, "Escribe un blog", $tags="")
+Rel_D(ÁreadeDifusión, SoftwareDifusióndeContenidos, "Publica y Gestiona Contenido de Difusión", $tags="")
+Rel_D(ÁreadeSistemas, SoftwareDifusióndeContenidos, "Administra y opera la infraestructura", $tags="")
+Rel_D(SoftwareDifusióndeContenidos, APIGateway, "conecta con api", $tags="")
+
+SHOW_LEGEND(true)
+@enduml

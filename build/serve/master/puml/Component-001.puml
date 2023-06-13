@@ -1,0 +1,26 @@
+@startuml
+set separator none
+title API Gateway - Gateway - Components
+
+left to right direction
+
+!include <C4/C4>
+!include <C4/C4_Context>
+!include <C4/C4_Component>
+
+System(SoftwareUNoticias, "Software U-Noticias", "Sistema de publicación noticias", $tags="")
+System(ClusterdeBasededatos, "Cluster de Base de datos", "", $tags="")
+System(SoftwareDifusióndeContenidos, "Software Difusión de Contenidos", "Gestión de contenidos para la Universidad", $tags="")
+
+Container_Boundary("APIGateway.Gateway_boundary", "Gateway", $tags="") {
+  Component(APIGateway.Gateway.APIUNoticias, "API U-Noticias", "", $tags="")
+  Component(APIGateway.Gateway.APIDifusiondeContenido, "API Difusion de Contenido", "", $tags="")
+}
+
+Rel_D(APIGateway.Gateway.APIUNoticias, SoftwareUNoticias, "crea noticia", $tags="")
+Rel_D(SoftwareDifusióndeContenidos, APIGateway.Gateway.APIDifusiondeContenido, "conecta con api", $tags="")
+Rel_D(APIGateway.Gateway.APIDifusiondeContenido, ClusterdeBasededatos, "Lee y escribe", $tags="")
+Rel_D(APIGateway.Gateway.APIDifusiondeContenido, APIGateway.Gateway.APIUNoticias, "crea noticia", $tags="")
+
+SHOW_LEGEND(true)
+@enduml

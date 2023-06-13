@@ -5,6 +5,48 @@ workspace "Sistema de gestión de Contenidos" {
         user = person "Comunidad DCC, Universitaria y publico en general"
         adminUser = person "Área de Difusión"
         sysadmin = person "Área de Sistemas"
+        docentes = person "Docentes"
+
+
+        softwareSystemDBMS = softwareSystem "Cluster de Base de datos"{
+            dbmsDifusionContenidos = container "DBMS Difusión de Contenidos" 
+        }
+
+        sofwareSystemBroker = softwareSystem "Broker" "Streaming Messaging"{
+            broker = container "Message Broker"{
+            pubUCampus = component "Publicador U-Campus"
+            pubUPaper = component "Publicador U-Paper"
+            subUCampus = component "Subcriptor U-Campus"
+            subUPaper = component "Subcriptor U-Paper"
+            pubUCampus -> subUCampus "subcribe replica estructura"
+            subUCampus -> dbmsDifusionContenidos "recibe replica estructura"
+            pubUPaper -> subUPaper "subcribe replica papers" 
+            subUPaper -> dbmsDifusionContenidos "recibe replica papers"
+            
+            }
+        }
+
+        softwareSystemUnoticias = softwareSystem "Software U-Noticias" "Sistema de publicación noticias" "Paneles de Noticias y comunicación con TV" {
+            unoticias = container "U-Noticia"
+        }
+        softwareSystemUCampus = softwareSystem "Software U-Campus" "Sistema gestión docente" {
+            ucampus = container "U-Campus"
+            ucampus -> pubUCampus "replica estructura"
+        }
+        softwareSystemUPaper = softwareSystem "Software U-Paper" "Sistema gestión documentos de investigación científica" {
+            upaper = container "U-Papers"
+            upaper -> pubUPaper  "replica papers"
+        }
+
+
+
+        softwareSystemGateWay = softwareSystem "API Gateway" "Plataforma para ejecución de API"{
+            gateway = container "Gateway" {
+                apiUNoticias = component "API U-Noticias"
+                apiDifusionContenidos = component "API Difusion de Contenido"
+            }
+            apiUNoticias -> unoticias "crea noticia"
+        }
 
         softwareSystem = softwareSystem "Software Difusión de Contenidos" "Gestión de contenidos para la Universidad" "Contenido difusión blog dinámico" {
             !docs docs
@@ -13,41 +55,22 @@ workspace "Sistema de gestión de Contenidos" {
             webapp = container "Sitio Web Publico" "" "nextjs" {
                 user -> this "Consume Contenido"   
                 user -> this "Comenta Post"
+                docentes -> this "Escribe un blog"
                 adminUser -> this "Publica y Gestiona Contenido de Difusión"
                 sysadmin -> this "Administra y opera la infraestructura"
             }
 
-            dbmsDifusionContenidos = container "DBMS Difusión de Contenidos" 
-
-            gateway = container "Gateway" {
-                apiUNoticias = component "API U-Noticias"
-                apiDifusionContenidos = component "API Difusion de Contenido"
-            }
-
             
-            unoticias = container "U-Noticia"
-            ucampus = container "U-Campus"
-            upaper = container "U-Papers"
-            broker = container "Message Broker"{
-                pubUCampus = component "Publicador U-Campus"
-                pubUPaper = component "Publicador U-Paper"
-                subUCampus = component "Subcriptor U-Campus"
-                subUPaper = component "Subcriptor U-Paper"
-                pubUCampus -> subUCampus "subcribe replica estructura"
-                subUCampus -> dbmsDifusionContenidos "recibe replica estructura"
-                pubUPaper -> subUPaper "subcribe replica papers" 
-                subUPaper -> dbmsDifusionContenidos "recibe replica papers"
-                
-            }
+            
             
             
             webapp -> apiDifusionContenidos "conecta con api"
             apiDifusionContenidos -> dbmsDifusionContenidos "Lee y escribe"
             apiDifusionContenidos -> apiUNoticias "crea noticia"
 
-            apiUNoticias -> unoticias "crea noticia"
-            upaper -> pubUPaper  "replica papers"
-            ucampus -> pubUCampus "replica estructura"
+            
+            
+           
             
         }
 
