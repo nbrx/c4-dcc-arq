@@ -13,27 +13,19 @@ skinparam preserveAspectRatio meet
 Person(ComunidadDCCUniversitariaypublicoengeneral, "Comunidad DCC, Universitaria y publico en general", "", $tags="")
 Person(ÁreadeDifusión, "Área de Difusión", "", $tags="")
 Person(ÁreadeSistemas, "Área de Sistemas", "", $tags="")
+Person(Docentes, "Docentes", "", $tags="")
+System(APIGateway, "API Gateway", "Plataforma para ejecución de API", $tags="")[[../../api-gateway/context/]]
 
 System_Boundary("SoftwareDifusióndeContenidos_boundary", "Software Difusión de Contenidos", $tags="") {
-  Container(SoftwareDifusióndeContenidos.DBMSDifusióndeContenidos, "DBMS Difusión de Contenidos", "", $tags="")
-  Container(SoftwareDifusióndeContenidos.Gateway, "Gateway", "", $tags="")[[../component/]]
-  Container(SoftwareDifusióndeContenidos.UNoticia, "U-Noticia", "", $tags="")
-  Container(SoftwareDifusióndeContenidos.UCampus, "U-Campus", "", $tags="")
-  Container(SoftwareDifusióndeContenidos.UPapers, "U-Papers", "", $tags="")
-  Container(SoftwareDifusióndeContenidos.MessageBroker, "Message Broker", "", $tags="")[[../component/]]
   Container(SoftwareDifusióndeContenidos.SitioWebPublico, "Sitio Web Publico", "nextjs", "", $tags="")
 }
 
-Rel_D(ÁreadeSistemas, SoftwareDifusióndeContenidos.SitioWebPublico, "Administra y opera la infraestructura", $tags="")
-Rel_D(SoftwareDifusióndeContenidos.MessageBroker, SoftwareDifusióndeContenidos.DBMSDifusióndeContenidos, "recibe replica estructura", $tags="")
-Rel_D(SoftwareDifusióndeContenidos.SitioWebPublico, SoftwareDifusióndeContenidos.Gateway, "conecta con api", $tags="")
-Rel_D(SoftwareDifusióndeContenidos.Gateway, SoftwareDifusióndeContenidos.DBMSDifusióndeContenidos, "Lee y escribe", $tags="")
-Rel_D(SoftwareDifusióndeContenidos.Gateway, SoftwareDifusióndeContenidos.UNoticia, "crea noticia", $tags="")
-Rel_D(SoftwareDifusióndeContenidos.UPapers, SoftwareDifusióndeContenidos.MessageBroker, "replica papers", $tags="")
-Rel_D(SoftwareDifusióndeContenidos.UCampus, SoftwareDifusióndeContenidos.MessageBroker, "replica estructura", $tags="")
 Rel_D(ComunidadDCCUniversitariaypublicoengeneral, SoftwareDifusióndeContenidos.SitioWebPublico, "Consume Contenido", $tags="")
 Rel_D(ComunidadDCCUniversitariaypublicoengeneral, SoftwareDifusióndeContenidos.SitioWebPublico, "Comenta Post", $tags="")
+Rel_D(Docentes, SoftwareDifusióndeContenidos.SitioWebPublico, "Escribe un blog", $tags="")
 Rel_D(ÁreadeDifusión, SoftwareDifusióndeContenidos.SitioWebPublico, "Publica y Gestiona Contenido de Difusión", $tags="")
+Rel_D(ÁreadeSistemas, SoftwareDifusióndeContenidos.SitioWebPublico, "Administra y opera la infraestructura", $tags="")
+Rel_D(SoftwareDifusióndeContenidos.SitioWebPublico, APIGateway, "conecta con api", $tags="")
 
 SHOW_LEGEND(true)
 @enduml
