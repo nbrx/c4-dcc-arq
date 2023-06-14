@@ -12,8 +12,8 @@ workspace "Sistema de gestión de Contenidos" {
             dbmsDifusionContenidos = container "DBMS Difusión de Contenidos" 
         }
 
-        sofwareSystemBroker = softwareSystem "Broker" "Streaming Messaging"{
-            broker = container "Message Broker"{
+        sofwareSystempubsub = softwareSystem "PubSub" "Streaming Messaging"{
+            pubsub = container "Message pubsub"{
             pubUCampus = component "Publicador U-Campus"
             pubUPaper = component "Publicador U-Paper"
             subUCampus = component "Subcriptor U-Campus"
@@ -66,7 +66,7 @@ workspace "Sistema de gestión de Contenidos" {
             
             webapp -> apiDifusionContenidos "conecta con api"
             apiDifusionContenidos -> dbmsDifusionContenidos "Lee y escribe"
-            apiDifusionContenidos -> apiUNoticias "crea noticia"
+            webapp -> apiUNoticias "crea noticia"
 
             
             
@@ -110,7 +110,7 @@ workspace "Sistema de gestión de Contenidos" {
             autoLayout lr
         }
 
-        component broker {
+        component pubsub {
             include *
             autoLayout lr
         }

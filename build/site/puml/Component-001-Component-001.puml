@@ -22,7 +22,7 @@ Container_Boundary("APIGateway.Gateway_boundary", "Gateway", $tags="") {
 Rel_D(APIGateway.Gateway.APIUNoticias, SoftwareUNoticias, "crea noticia", $tags="")
 Rel_D(SoftwareDifusióndeContenidos, APIGateway.Gateway.APIDifusiondeContenido, "conecta con api", $tags="")
 Rel_D(APIGateway.Gateway.APIDifusiondeContenido, ClusterdeBasededatos, "Lee y escribe", $tags="")
-Rel_D(APIGateway.Gateway.APIDifusiondeContenido, APIGateway.Gateway.APIUNoticias, "crea noticia", $tags="")
+Rel_D(SoftwareDifusióndeContenidos, APIGateway.Gateway.APIUNoticias, "crea noticia", $tags="")
 
 SHOW_LEGEND(true)
 @enduml

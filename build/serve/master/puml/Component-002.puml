@@ -1,6 +1,6 @@
 @startuml
 set separator none
-title Broker - Message Broker - Components
+title PubSub - Message pubsub - Components
 
 left to right direction
 
@@ -12,19 +12,19 @@ System(SoftwareUPaper, "Software U-Paper", "Sistema gestión documentos de inves
 System(SoftwareUCampus, "Software U-Campus", "Sistema gestión docente", $tags="")
 System(ClusterdeBasededatos, "Cluster de Base de datos", "", $tags="")
 
-Container_Boundary("Broker.MessageBroker_boundary", "Message Broker", $tags="") {
-  Component(Broker.MessageBroker.PublicadorUPaper, "Publicador U-Paper", "", $tags="")
-  Component(Broker.MessageBroker.SubcriptorUCampus, "Subcriptor U-Campus", "", $tags="")
-  Component(Broker.MessageBroker.SubcriptorUPaper, "Subcriptor U-Paper", "", $tags="")
-  Component(Broker.MessageBroker.PublicadorUCampus, "Publicador U-Campus", "", $tags="")
+Container_Boundary("PubSub.Messagepubsub_boundary", "Message pubsub", $tags="") {
+  Component(PubSub.Messagepubsub.PublicadorUPaper, "Publicador U-Paper", "", $tags="")
+  Component(PubSub.Messagepubsub.SubcriptorUCampus, "Subcriptor U-Campus", "", $tags="")
+  Component(PubSub.Messagepubsub.SubcriptorUPaper, "Subcriptor U-Paper", "", $tags="")
+  Component(PubSub.Messagepubsub.PublicadorUCampus, "Publicador U-Campus", "", $tags="")
 }
 
-Rel_D(Broker.MessageBroker.PublicadorUCampus, Broker.MessageBroker.SubcriptorUCampus, "subcribe replica estructura", $tags="")
-Rel_D(Broker.MessageBroker.SubcriptorUCampus, ClusterdeBasededatos, "recibe replica estructura", $tags="")
-Rel_D(Broker.MessageBroker.PublicadorUPaper, Broker.MessageBroker.SubcriptorUPaper, "subcribe replica papers", $tags="")
-Rel_D(Broker.MessageBroker.SubcriptorUPaper, ClusterdeBasededatos, "recibe replica papers", $tags="")
-Rel_D(SoftwareUCampus, Broker.MessageBroker.PublicadorUCampus, "replica estructura", $tags="")
-Rel_D(SoftwareUPaper, Broker.MessageBroker.PublicadorUPaper, "replica papers", $tags="")
+Rel_D(PubSub.Messagepubsub.PublicadorUCampus, PubSub.Messagepubsub.SubcriptorUCampus, "subcribe replica estructura", $tags="")
+Rel_D(PubSub.Messagepubsub.SubcriptorUCampus, ClusterdeBasededatos, "recibe replica estructura", $tags="")
+Rel_D(PubSub.Messagepubsub.PublicadorUPaper, PubSub.Messagepubsub.SubcriptorUPaper, "subcribe replica papers", $tags="")
+Rel_D(PubSub.Messagepubsub.SubcriptorUPaper, ClusterdeBasededatos, "recibe replica papers", $tags="")
+Rel_D(SoftwareUCampus, PubSub.Messagepubsub.PublicadorUCampus, "replica estructura", $tags="")
+Rel_D(SoftwareUPaper, PubSub.Messagepubsub.PublicadorUPaper, "replica papers", $tags="")
 
 SHOW_LEGEND(true)
 @enduml
