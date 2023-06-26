@@ -1,6 +1,6 @@
-# API Gateway
+# Patron de Diseño Broker
 
-* Status: proposed
+* Status: Aprobado
 * Deciders: Nebur Alvarez
 * Date: 2023-06-11
 
@@ -24,20 +24,23 @@ El diseño e implementación de una API requiere tener en cuenta varios aspectos
 
 ## Considered Options
 
-* Plataforma Tyk
+* Plataforma API Management y GateWay
+* Balanceador de Carga
+* Cluster de Web Server por DNS
 
 ## Decision Outcome
 
-Chosen option: "Plataforma Tyk", because comes out best.
+Chosen option: "Plataforma API Management y GateWay", Es la mejor opción dado que normalmente estas plataformas se implementan con Load Balancer y Cluster de Servidores Web. Además incorpora gestión de API y abstracción de localización de los recursos.
 
 ## Pros and Cons of the Options
 
-### Plataforma Tyk
+Especificar
 
-La Exposición de servicios internet debe abarcar consideraciones de seguridad, ratios de uso, monitoreo y métricas. La plataforma Tyk viene a cubrir estas consideraciones.
-En este contexto Tyk permite:
-*  Securitizar APIs con OpenID Connect.
-*  Instalación Api Gateway on-premises, y por lo tanto cercano a los servicios que se busca exponer.
-*  Realizar una gestión sobre cuotas de peticiones. 
-*  Realizar una gestión sobre tasa de peticiones.
-*  Ver resúmenes de actividad sobre cada API, https://tyk.io/docs/tyk-dashboard-analytics/traffic-overview/.
+### Plataforma API Management y GateWay
+
+La Exposición de servicios internet debe abarcar consideraciones de seguridad, ratios de uso, monitoreo y métricas. La plataforma API Management y GateWay viene a cubrir estas consideraciones.
+En este contexto permite:
+* Securitizar APIs con OpenID Connect
+* Instalación Api Gateway on-premises y cloud (AWS, Azure, GCP, etc), y por lo tanto cercano a los servicios que se busca exponer.
+* Realizar una gestión sobre cuotas de peticiones
+* Realizar una gestión sobre tasa de peticiones

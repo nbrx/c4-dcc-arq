@@ -1,7 +1,6 @@
-## Functional Overview
+## Resumen Funcional
 
 The high-level functional requirements for the new Risk System are as follows.
-
 
 1. Import trade data from the Trade Data System.
 2. Import counterparty data from the Reference Data System.
