@@ -10,22 +10,22 @@ left to right direction
 
 skinparam svgDimensionStyle false
 skinparam preserveAspectRatio meet
-Person(ComunidadDCCUniversitariaypublicoengeneral, "Comunidad DCC, Universitaria y publico en general", "", $tags="")
-Person(ÁreadeDifusión, "Área de Difusión", "", $tags="")
+Person(Usuario, "Usuario", "Comunidad DCC, Universitaria y publico en general", $tags="")
+Person(ÁreadeDifusión, "Área de Difusión", "Área encargada de crear distintos contenidos para el departamento", $tags="")
 Person(ÁreadeSistemas, "Área de Sistemas", "", $tags="")
+System(Broker, "Broker", "Plataforma para la ejecución y administración de API", $tags="")[[../../broker/context/]]
 Person(Docentes, "Docentes", "", $tags="")
-System(APIGateway, "API Gateway", "Plataforma para ejecución de API", $tags="")[[../../api-gateway/context/]]
 
 System_Boundary("SoftwareDifusióndeContenidos_boundary", "Software Difusión de Contenidos", $tags="") {
-  Container(SoftwareDifusióndeContenidos.SitioWebPublico, "Sitio Web Publico", "nextjs", "", $tags="")
+  Container(SoftwareDifusióndeContenidos.SitioWebPublico, "Sitio Web Publico", "nextjs", "", $tags="")[[../component/]]
 }
 
-Rel_D(ComunidadDCCUniversitariaypublicoengeneral, SoftwareDifusióndeContenidos.SitioWebPublico, "Consume Contenido", $tags="")
-Rel_D(ComunidadDCCUniversitariaypublicoengeneral, SoftwareDifusióndeContenidos.SitioWebPublico, "Comenta Post", $tags="")
+Rel_D(Usuario, SoftwareDifusióndeContenidos.SitioWebPublico, "Consume Contenido", $tags="")
+Rel_D(Usuario, SoftwareDifusióndeContenidos.SitioWebPublico, "Comenta Post", $tags="")
 Rel_D(Docentes, SoftwareDifusióndeContenidos.SitioWebPublico, "Escribe un blog", $tags="")
 Rel_D(ÁreadeDifusión, SoftwareDifusióndeContenidos.SitioWebPublico, "Publica y Gestiona Contenido de Difusión", $tags="")
 Rel_D(ÁreadeSistemas, SoftwareDifusióndeContenidos.SitioWebPublico, "Administra y opera la infraestructura", $tags="")
-Rel_D(SoftwareDifusióndeContenidos.SitioWebPublico, APIGateway, "conecta con api", $tags="")
+Rel_D(SoftwareDifusióndeContenidos.SitioWebPublico, Broker, "request data from API", $tags="")
 
 SHOW_LEGEND(true)
 @enduml

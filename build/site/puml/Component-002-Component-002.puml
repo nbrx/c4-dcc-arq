@@ -1,6 +1,6 @@
 @startuml
 set separator none
-title PubSub - Message pubsub - Components
+title Broker - Gateway - Components
 
 left to right direction
 
@@ -10,23 +10,19 @@ left to right direction
 
 skinparam svgDimensionStyle false
 skinparam preserveAspectRatio meet
-System(SoftwareUPaper, "Software U-Paper", "Sistema gestión documentos de investigación científica", $tags="")[[../../software-u-paper/context/]]
-System(SoftwareUCampus, "Software U-Campus", "Sistema gestión docente", $tags="")[[../../software-u-campus/context/]]
-System(ClusterdeBasededatos, "Cluster de Base de datos", "", $tags="")[[../../cluster-de-base-de-datos/context/]]
+System(SoftwareDifusióndeContenidos, "Software Difusión de Contenidos", "Gestión de contenidos para la Universidad", $tags="")[[../../software-difusión-de-contenidos/context/]]
+System(UNoticias, "U-Noticias", "Sistema de publicación noticias", $tags="")[[../../u-noticias/context/]]
+System(BasededatosSistemadeDifusióndeContenidos, "Base de datos Sistema de Difusión de Contenidos", "", $tags="")[[../../base-de-datos-sistema-de-difusión-de-contenidos/context/]]
 
-Container_Boundary("PubSub.Messagepubsub_boundary", "Message pubsub", $tags="") {
-  Component(PubSub.Messagepubsub.PublicadorUPaper, "Publicador U-Paper", "", $tags="")
-  Component(PubSub.Messagepubsub.SubcriptorUCampus, "Subcriptor U-Campus", "", $tags="")
-  Component(PubSub.Messagepubsub.SubcriptorUPaper, "Subcriptor U-Paper", "", $tags="")
-  Component(PubSub.Messagepubsub.PublicadorUCampus, "Publicador U-Campus", "", $tags="")
+Container_Boundary("Broker.Gateway_boundary", "Gateway", $tags="") {
+  Component(Broker.Gateway.APIUNoticias, "API U-Noticias", "", $tags="")
+  Component(Broker.Gateway.APIDifusiondeContenido, "API Difusion de Contenido", "", $tags="")
 }
 
-Rel_D(PubSub.Messagepubsub.PublicadorUCampus, PubSub.Messagepubsub.SubcriptorUCampus, "subcribe replica estructura", $tags="")
-Rel_D(PubSub.Messagepubsub.SubcriptorUCampus, ClusterdeBasededatos, "recibe replica estructura", $tags="")
-Rel_D(PubSub.Messagepubsub.PublicadorUPaper, PubSub.Messagepubsub.SubcriptorUPaper, "subcribe replica papers", $tags="")
-Rel_D(PubSub.Messagepubsub.SubcriptorUPaper, ClusterdeBasededatos, "recibe replica papers", $tags="")
-Rel_D(SoftwareUCampus, PubSub.Messagepubsub.PublicadorUCampus, "replica estructura", $tags="")
-Rel_D(SoftwareUPaper, PubSub.Messagepubsub.PublicadorUPaper, "replica papers", $tags="")
+Rel_D(Broker.Gateway.APIUNoticias, UNoticias, "crea noticia", $tags="")
+Rel_D(SoftwareDifusióndeContenidos, Broker.Gateway.APIDifusiondeContenido, "request data from API", $tags="")
+Rel_D(Broker.Gateway.APIDifusiondeContenido, BasededatosSistemadeDifusióndeContenidos, "Lee y escribe", $tags="")
+Rel_D(SoftwareDifusióndeContenidos, Broker.Gateway.APIUNoticias, "crea noticia", $tags="")
 
 SHOW_LEGEND(true)
 @enduml

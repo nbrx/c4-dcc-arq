@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Software Difusión de Contenidos | Sistema de gestión de Contenidos</title>
+    <title>Software Difusión de Contenidos | Sistema de Difusión de Contenidos</title>
     <link href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css" rel="stylesheet">
     <link href="../../../../style.css" rel="stylesheet">
     <link href="./../../../style-branding.css" rel="stylesheet">
@@ -11,7 +11,7 @@
   <body>
     <script type="text/javascript" src="../../../../header.js"></script>
     <nav class="navbar" role="navigation" aria-label="main navigation">
-      <div class="navbar-brand has-site-branding"><a href="../../../" class="navbar-item"><span class="has-text-weight-semibold has-site-branding">Sistema de gestión de Contenidos</span></a></div>
+      <div class="navbar-brand has-site-branding"><a href="../../../" class="navbar-item"><span class="has-text-weight-semibold has-site-branding">Sistema de Difusión de Contenidos</span></a></div>
       <div class="navbar-menu has-site-branding">
         <div class="navbar-end">
           <div class="navbar-item"><input class="input is-small is-rounded has-site-branding" id="search" type="search" size="30" maxlength="50" placeholder="Search (requires 3 characters)..." onkeyup="redirect(event, value, '../../../search/')"></div>
@@ -32,7 +32,7 @@
         </ul>
         <p class="menu-label">Software systems</p>
         <ul class="menu-list has-site-branding">
-          <li><a href="../../../api-gateway/" class="">API Gateway</a><a href="../../../cluster-de-base-de-datos/" class="">Cluster de Base de datos</a><a href="../../../pubsub/" class="">PubSub</a><a href="../../" class="is-active">Software Difusión de Contenidos</a><a href="../../../software-u-campus/" class="">Software U-Campus</a><a href="../../../software-u-noticias/" class="">Software U-Noticias</a><a href="../../../software-u-paper/" class="">Software U-Paper</a></li>
+          <li><a href="../../../base-de-datos-sistema-de-difusión-de-contenidos/" class="">Base de datos Sistema de Difusión de Contenidos</a><a href="../../../broker/" class="">Broker</a><a href="../../../pubsub/" class="">PubSub</a><a href="../../../sistema-de-tv/" class="">Sistema de TV</a><a href="../../" class="is-active">Software Difusión de Contenidos</a><a href="../../../u-campus/" class="">U-Campus</a><a href="../../../u-noticias/" class="">U-Noticias</a><a href="../../../u-paper/" class="">U-Paper</a></li>
         </ul>
       </aside>
       <div class="container is-fluid has-background-white">
@@ -43,76 +43,65 @@
             <li><a href="../../" class="">Info</a></li>
             <li><a href="../../context/" class="">Context views</a></li>
             <li><a href="../../container/" class="">Container views</a></li>
+            <li><a href="../../component/" class="">Component views</a></li>
             <li><a href="../../dependencies/" class="">Dependencies</a></li>
             <li><a href="../../decisions/" class="">Decisions</a></li>
             <li class="is-active"><a href="../" class="is-active">Documentation</a></li>
           </ul>
         </div>
         <div class="content p-3">
-          <div><h2>Quality Attributes</h2>
-<p>The quality attributes for the new Financial Risk System are as follows.</p>
-<h3>Performance</h3>
+          <div><h2>Intereses en la arquitectura.</h2>
+<p>Para entender los intereses en la Arquitectura, primero hay que identificar a todas las personas, grupos o entidades que tengan algún interés o preocupación por la realización de la Arquitectura: los Stakeholders (SH), y desde ahí, explicitar los intereses de cada uno:</p>
 <ul>
- <li>Risk reports must be generated before 9am the following business day in Singapore.</li>
-</ul>
-<h3>Scalability</h3>
-<ul>
- <li>The system must be able to cope with trade volumes for the next 5 years.</li>
- <li>The Trade Data System export includes approximately 5000 trades now and it is anticipated that there will be an additional 10 trades per day.</li>
- <li>The Reference Data System counterparty export includes approximately 20,000 counterparties and growth will be negligible.</li>
- <li>There are 40-50 business users around the world that need access to the report.</li>
-</ul>
-<h3>Availability</h3>
-<ul>
- <li>Risk reports should be available to users 24x7, but a small amount of downtime (less than 30 minutes per day) can be tolerated.</li>
-</ul>
-<h3>Failover</h3>
-<ul>
- <li>Manual failover is sufficient for all system components, provided that the availability targets can be met.</li>
-</ul>
-<h3>Security</h3>
-<ul>
- <li>This system must follow bank policy that states system access is restricted to authenticated and authorised users only.</li>
- <li>Reports must only be distributed to authorised users.</li>
- <li>Only a subset of the authorised users are permitted to modify the parameters used in the risk calculations.</li>
- <li>Although desirable, there are no single sign-on requirements (e.g. integration with Active Directory, LDAP, etc).</li>
- <li>All access to the system and reports will be within the confines of the bank's global network.</li>
-</ul>
-<h3>Audit</h3>
-<ul>
- <li>The following events must be recorded in the system audit logs: 
+ <li>Universidad de Chile y Facultad de Ciencias Físicas y Matemáticas 
   <ul>
-   <li>Report generation.</li>
-   <li>Modification of risk calculation parameters.</li>
+   <li>Referencia de implementación tecnológica para la expansión de este software para todas las facultades y departamentos</li>
   </ul></li>
- <li>It must be possible to understand the input data that was used in calculating risk.</li>
-</ul>
-<h3>Fault Tolerance and Resilience</h3>
-<ul>
- <li>The system should take appropriate steps to recover from an error if possible, but all errors should be logged.</li>
- <li>Errors preventing a counterparty risk calculation being completed should be logged and the process should continue.</li>
-</ul>
-<h3>Internationalization and Localization</h3>
-<ul>
- <li>All user interfaces will be presented in English only.</li>
- <li>All reports will be presented in English only.</li>
- <li>All trading values and risk figures will be presented in US dollars only.</li>
-</ul>
-<h3>Monitoring and Management</h3>
-<ul>
- <li>A Simple Network Management Protocol (SNMP) trap should be sent to the bank's Central Monitoring Service in the following circumstances: 
+ <li>Departamento de Ciencias de la computación 
   <ul>
-   <li>When there is a fatal error with a system component.</li>
-   <li>When reports have not been generated before 9am Singapore time.</li>
+   <li>Administración de contenidos y recursos de difusión del departamento.</li>
+   <li>Mostrarse como el mayor referente en investigación en Ciencias de la Computación en nuestro país a través de la excelencia técnica del desarrollo de sus plataformas tecnológicas.</li>
   </ul></li>
-</ul>
-<h3>Data Retention and Archiving</h3>
-<ul>
- <li>Input files used in the risk calculation process must be retained for 1 year.</li>
-</ul>
-<h3>Interoperability</h3>
-<ul>
- <li>Interfaces with existing data systems should conform to and use existing data formats.</li>
+ <li>Estudiantes 
+  <ul>
+   <li>Que los puntos de contacto con la difusión sea consistente a través de todos los canales disponibles.</li>
+   <li>Que el sistema sea de fácil uso.</li>
+  </ul></li>
+ <li>Académicos y Funcionarios 
+  <ul>
+   <li>Ver información relevante de su trabajo, su área y publicaciones científicas.</li>
+   <li>Poder ver su información actualizada.</li>
+  </ul></li>
+ <li>Área de Sistemas 
+  <ul>
+   <li>Mantener el gobierno de la plataforma e Infraestructura.</li>
+   <li>Que la plataforma pueda ser mantenible en el tiempo a un bajo costo.</li>
+   <li>Que soporte una alta concurrencia de visitantes.</li>
+   <li>Interés en que la Operación tecnológica de los sistemas se pueda dar sin problemas</li>
+   <li>Robustez y bajo acoplamiento. Es decir, que si alguna de las aplicaciones deja de funcionar, eso no afecte la performance del resto.</li>
+  </ul></li>
+ <li>Área de Aplicaciones 
+  <ul>
+   <li>Gobernanza y Gestión de las aplicaciones del Depto (versionamiento, CICD).</li>
+   <li>Lograr alta integración entre los distintos aplicativos del ecosistema</li>
+   <li>Lograr una plataforma multicanal</li>
+  </ul></li>
+ <li>Desarrolladores (estudiantes, memoristas, tesistas, expertos y académicos del departamento) 
+  <ul>
+   <li>Facilidad para la creación y mantención de Software (Documentación y una plataforma integridad para el desarrollo)</li>
+  </ul></li>
+ <li>Área de Difusión 
+  <ul>
+   <li>Administrar un canal único de difusión de contenidos y que sea consistente para los sistemas que se integran.</li>
+   <li>Que permita la creación de contenidos dinámicos</li>
+   <li>Alta Usabilidad y buena experiencia de los usuarios de la plataforma</li>
+   <li>Creación de un blog para que distintos participantes puedan subir contenidos.</li>
+   <li>Preservación de los contenidos del sitio web actual.</li>
+  </ul></li>
+ <li>Comunidad general (usuarios) 
+  <ul>
+   <li>Ver información relevante del departamento y vida universitaria</li>
+  </ul></li>
 </ul></div>
         </div>
       </div>

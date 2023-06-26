@@ -9,18 +9,18 @@ left to right direction
 
 skinparam svgDimensionStyle false
 skinparam preserveAspectRatio meet
-Person(ComunidadDCCUniversitariaypublicoengeneral, "Comunidad DCC, Universitaria y publico en general", "", $tags="")
-Person(ÁreadeDifusión, "Área de Difusión", "", $tags="")
+Person(Usuario, "Usuario", "Comunidad DCC, Universitaria y publico en general", $tags="")
+Person(ÁreadeDifusión, "Área de Difusión", "Área encargada de crear distintos contenidos para el departamento", $tags="")
 Person(ÁreadeSistemas, "Área de Sistemas", "", $tags="")
 Person(Docentes, "Docentes", "", $tags="")
-System(APIGateway, "API Gateway", "Plataforma para ejecución de API", $tags="")[[../../api-gateway/context/]]
+System(Broker, "Broker", "Plataforma para la ejecución y administración de API", $tags="")[[../../broker/context/]]
 System(SoftwareDifusióndeContenidos, "Software Difusión de Contenidos", "Gestión de contenidos para la Universidad", $tags="")[[../container/]]
 
-Rel_D(ComunidadDCCUniversitariaypublicoengeneral, SoftwareDifusióndeContenidos, "Consume Contenido", $tags="")
+Rel_D(Usuario, SoftwareDifusióndeContenidos, "Consume Contenido", $tags="")
 Rel_D(Docentes, SoftwareDifusióndeContenidos, "Escribe un blog", $tags="")
 Rel_D(ÁreadeDifusión, SoftwareDifusióndeContenidos, "Publica y Gestiona Contenido de Difusión", $tags="")
 Rel_D(ÁreadeSistemas, SoftwareDifusióndeContenidos, "Administra y opera la infraestructura", $tags="")
-Rel_D(SoftwareDifusióndeContenidos, APIGateway, "conecta con api", $tags="")
+Rel_D(SoftwareDifusióndeContenidos, Broker, "request data from API", $tags="")
 
 SHOW_LEGEND(true)
 @enduml

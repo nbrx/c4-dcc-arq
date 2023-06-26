@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Software Difusión de Contenidos | Sistema de gestión de Contenidos</title>
+    <title>Software Difusión de Contenidos | Sistema de Difusión de Contenidos</title>
     <link href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css" rel="stylesheet">
     <link href="../../style.css" rel="stylesheet">
     <link href="./../style-branding.css" rel="stylesheet">
@@ -11,7 +11,7 @@
   <body>
     <script type="text/javascript" src="../../header.js"></script>
     <nav class="navbar" role="navigation" aria-label="main navigation">
-      <div class="navbar-brand has-site-branding"><a href="../" class="navbar-item"><span class="has-text-weight-semibold has-site-branding">Sistema de gestión de Contenidos</span></a></div>
+      <div class="navbar-brand has-site-branding"><a href="../" class="navbar-item"><span class="has-text-weight-semibold has-site-branding">Sistema de Difusión de Contenidos</span></a></div>
       <div class="navbar-menu has-site-branding">
         <div class="navbar-end">
           <div class="navbar-item"><input class="input is-small is-rounded has-site-branding" id="search" type="search" size="30" maxlength="50" placeholder="Search (requires 3 characters)..." onkeyup="redirect(event, value, '../search/')"></div>
@@ -32,7 +32,7 @@
         </ul>
         <p class="menu-label">Software systems</p>
         <ul class="menu-list has-site-branding">
-          <li><a href="../api-gateway/" class="">API Gateway</a><a href="../cluster-de-base-de-datos/" class="">Cluster de Base de datos</a><a href="../pubsub/" class="">PubSub</a><a href="./" class="is-active">Software Difusión de Contenidos</a><a href="../software-u-campus/" class="">Software U-Campus</a><a href="../software-u-noticias/" class="">Software U-Noticias</a><a href="../software-u-paper/" class="">Software U-Paper</a></li>
+          <li><a href="../base-de-datos-sistema-de-difusión-de-contenidos/" class="">Base de datos Sistema de Difusión de Contenidos</a><a href="../broker/" class="">Broker</a><a href="../pubsub/" class="">PubSub</a><a href="../sistema-de-tv/" class="">Sistema de TV</a><a href="./" class="is-active">Software Difusión de Contenidos</a><a href="../u-campus/" class="">U-Campus</a><a href="../u-noticias/" class="">U-Noticias</a><a href="../u-paper/" class="">U-Paper</a></li>
         </ul>
       </aside>
       <div class="container is-fluid has-background-white">
@@ -43,25 +43,27 @@
             <li class="is-active"><a href="./" class="is-active">Info</a></li>
             <li><a href="context/" class="">Context views</a></li>
             <li><a href="container/" class="">Container views</a></li>
+            <li><a href="component/" class="">Component views</a></li>
             <li><a href="dependencies/" class="">Dependencies</a></li>
             <li><a href="decisions/" class="">Decisions</a></li>
             <li><a href="sections/" class="">Documentation</a></li>
           </ul>
         </div>
         <div class="content p-3">
-          <div><h1>Financial Risk System</h1>
-<h2>Context</h2>
-<p>A global investment bank based in London, New York and Singapore trades (buys and sells) financial products with other banks (counterparties). When share prices on the stock markets move up or down, the bank either makes money or loses it. At the end of the working day, the bank needs to gain a view of how much risk they are exposed to (e.g. of losing money) by running some calculations on the data held about their trades. The bank has an existing Trade Data System (TDS) and Reference Data System (RDS) but need a new Risk System.</p>
-<h3>Trade Data System</h3>
-<p>The Trade Data System maintains a store of all trades made by the bank. It is already configured to generate a file-based XML export of trade data at the close of business (5pm) in New York. The export includes the following information for every trade made by the bank:</p>
+          <div><h1>SISTEMA DE DIFUSIÓN CONTENIDOS</h1>
+<h2>Introducción</h2>
+<p>El Departamento de Ciencias de la Computación (DCC) de la Universidad de Chile desde su creación a la fecha ha desarrollado una serie de aplicaciones a nivel Institucional, las que están disponibles para la comunidad universitaria. Dentro de estas aplicaciones, el departamento de difusión posee un sitio web estático, en el que el contenido creado por el resto de las aplicaciones (por ejemplo u-noticias) debe ser subido de forma manual. Este último sitio busca ser reemplazado por un nuevo sistema capaz de proveer contenido dinámico integrado con las otras aplicaciones del departamento.</p>
+<p>Consecuente con lo anterior, para el desarrollo de este nuevo sistema, se realizó un acuerdo de colaboración con la empresa “Nanosoft” (compuesta por los miembros de este grupo) a la cual se le solicitó realizar el diseño arquitectónico de la solución.</p>
+<h3>Contexto</h3>
+<h4>Objetivo de negocio</h4>
+<p>Mejorar la difusión del contenido creado por el área de Difusión y hacerlo más atractivo para el Departamento de Ciencias de la Computación, la comunidad universitaria y al público en general.</p>
+<h4>Drivers de negocio</h4>
+<p>Se identificaron los siguientes drivers de negocio de acuerdo con el objetivo:</p>
 <ul>
- <li>Trade ID</li>
- <li>Date</li>
- <li>Current trade value in US dollars</li>
- <li>Counterparty ID</li>
-</ul>
-<h3>Reference Data System</h3>
-<p>The Reference Data System maintains all of the reference data needed by the bank. This includes information about counterparties; each of which represents an individual, a bank, etc. A file-based XML export is also available and includes basic information about each counterparty. A new organisation-wide reference data system is due for completion in the next 3 months, with the current system eventually being decommissioned.</p></div>
+ <li>Existe la oportunidad de centralizar la información en un solo medio, logrando un acceso fácil y rápido, generando consistencia y mejorando la calidad de la misma.</li>
+ <li>Facilitar la gestión de la información: Complementario con lo anterior, al tener un solo medio de información, los responsables de la comunicación pueden concentrar sus esfuerzos en mantener actualizado y relevante el contenido, en lugar de tener que traspasar la información de un medio a otro.</li>
+ <li>El tener un contenido más atractivo, logrará aumentar la retención de los visitantes, mejorar la experiencia del usuario, y además, entregar credibilidad y confianza en el departamento.</li>
+</ul></div>
         </div>
       </div>
     </div>
