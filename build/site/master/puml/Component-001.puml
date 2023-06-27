@@ -19,6 +19,7 @@ Container_Boundary("SoftwareDifusióndeContenidos.SitioWebPublico_boundary", "Si
 Rel_D(SoftwareDifusióndeContenidos.SitioWebPublico.Controlador, SoftwareDifusióndeContenidos.SitioWebPublico.Modelo, "pulls data setter", $tags="")
 Rel_D(SoftwareDifusióndeContenidos.SitioWebPublico.Controlador, SoftwareDifusióndeContenidos.SitioWebPublico.Vista, "push data setters", $tags="")
 Rel_D(SoftwareDifusióndeContenidos.SitioWebPublico.Vista, SoftwareDifusióndeContenidos.SitioWebPublico.Controlador, "request user data", $tags="")
+Rel_D(SoftwareDifusióndeContenidos.SitioWebPublico.Vista, SoftwareDifusióndeContenidos.SitioWebPublico.Modelo, "display data getter", $tags="")
 Rel_D(SoftwareDifusióndeContenidos.SitioWebPublico.Controlador, Broker, "request data from API", $tags="")
 
 SHOW_LEGEND(true)

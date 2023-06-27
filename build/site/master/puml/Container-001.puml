@@ -11,8 +11,8 @@ left to right direction
 Person(Usuario, "Usuario", "Comunidad DCC, Universitaria y publico en general", $tags="")
 Person(ÁreadeDifusión, "Área de Difusión", "Área encargada de crear distintos contenidos para el departamento", $tags="")
 Person(ÁreadeSistemas, "Área de Sistemas", "", $tags="")
-System(Broker, "Broker", "Plataforma para la ejecución y administración de API", $tags="")
 Person(Docentes, "Docentes", "", $tags="")
+System(Broker, "Broker", "Plataforma para la ejecución y administración de API", $tags="")
 
 System_Boundary("SoftwareDifusióndeContenidos_boundary", "Software Difusión de Contenidos", $tags="") {
   Container(SoftwareDifusióndeContenidos.SitioWebPublico, "Sitio Web Publico", "nextjs", "", $tags="")

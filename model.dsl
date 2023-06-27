@@ -9,8 +9,9 @@ workspace "Sistema de Difusión de Contenidos" {
 
 
         softwareSystemDBMS = softwareSystem "Base de datos Sistema de Difusión de Contenidos"{
+            tags "azul"
             dbmsDifusionContenidos = container "DBMS Difusión de Contenidos" {
-                 tags "gris"
+                 tags "azul"
             }
            
         }
@@ -20,8 +21,13 @@ workspace "Sistema de Difusión de Contenidos" {
                 tags "gris"
                 pubUCampus = component "Publicador U-Campus"
                 pubUPaper = component "Publicador U-Paper"
-                subUCampus = component "Subcriptor U-Campus"
-                subUPaper = component "Subcriptor U-Paper"
+                pubUproyectos = component "Publicador U-Proyectos"
+                subUCampus = component "Subcriptor U-Campus" "Suscriptor para replica de datos hacia el sistema de difusión de contenidos"{
+                    tags "azul"
+                }
+                subUPaper = component "Subcriptor U-Paper" "Suscriptor para replica de datos hacia el sistema de difusión de contenidos"{
+                    tags "azul"
+                }
                 pubUCampus -> subUCampus "subcribe replica estructura"
                 subUCampus -> dbmsDifusionContenidos "recibe replica estructura"
                 pubUPaper -> subUPaper "subcribe replica papers" 
@@ -34,6 +40,19 @@ workspace "Sistema de Difusión de Contenidos" {
             tv = container "TV" {tags "gris"}
         }
         
+        softwareCuentasUChile = softwareSystem "cuentas u-chile" "Sistema que administra la identida, autorización y autenticación de las cuentas de usuario de la Uniersidad de Chile"{
+            rbacUChile = container "RBAC U.Chile" {
+                tags "gris"
+            }
+        }
+
+        softwareuProyects = softwareSystem "u-proyectos" "Sistema que administra los proyectos de la Uniersidad de Chile"{
+            uproyectos = container "U-Proyectos" {
+                tags "gris"
+            }
+        }
+        
+
         softwareSystemUnoticias = softwareSystem "U-Noticias" "Sistema de publicación noticias" "Paneles de Noticias y comunicación con TV" {
             unoticias = container "U-Noticia"{
                 tags "gris"
@@ -46,7 +65,8 @@ workspace "Sistema de Difusión de Contenidos" {
                 tags "gris"
                 }
             ucampus -> pubUCampus "replica estructura"
-            ucampus -> pubUCampus "replica estructura"
+            ucampus -> pubUCampus "replica indicadores de rendimiento del DCC"
+            uproyectos -> pubUproyectos
         }
          
         softwareSystemUPaper = softwareSystem "U-Paper" "Sistema gestión documentos de investigación científica" {
@@ -62,7 +82,9 @@ workspace "Sistema de Difusión de Contenidos" {
             gateway = container "Gateway" {
                 tags "gris"
                 apiUNoticias = component "API U-Noticias"
-                apiDifusionContenidos = component "API Difusion de Contenido"
+                apiDifusionContenidos = component "API Difusion de Contenido" {
+                     tags "azul"
+                }
             }
             apiUNoticias -> unoticias "crea noticia"
         }
@@ -79,12 +101,19 @@ workspace "Sistema de Difusión de Contenidos" {
                 adminUser -> this "Publica y Gestiona Contenido de Difusión"
                 sysadmin -> this "Administra y opera la infraestructura"
 
-                models = component "Modelo"
-                view = component "Vista"
-                controler = component "Controlador"
+                models = component "Modelo" {
+                     tags "azul"
+                }
+                view = component "Vista" {
+                     tags "azul"
+                }
+                controler = component "Controlador" {
+                     tags "azul"
+                }
                 controler -> models "pulls data setter"
                 controler -> view "push data setters"
                 view -> controler "request user data"
+                view -> models "display data getter"
                 controler -> apiDifusionContenidos "request data from API"
                 
             }
@@ -92,6 +121,8 @@ workspace "Sistema de Difusión de Contenidos" {
             
             apiDifusionContenidos -> dbmsDifusionContenidos "Lee y escribe"
             webapp -> apiUNoticias "crea noticia"
+            webapp -> rbacUChile "verifica autenticación/autorización" 
+            
 
   
         }

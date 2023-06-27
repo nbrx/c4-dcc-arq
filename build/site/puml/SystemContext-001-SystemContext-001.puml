@@ -13,7 +13,7 @@ Person(Usuario, "Usuario", "Comunidad DCC, Universitaria y publico en general", 
 Person(ÁreadeDifusión, "Área de Difusión", "Área encargada de crear distintos contenidos para el departamento", $tags="")
 Person(ÁreadeSistemas, "Área de Sistemas", "", $tags="")
 Person(Docentes, "Docentes", "", $tags="")
-System(Broker, "Broker", "Plataforma para la ejecución y administración de API", $tags="")
+System(Broker, "Broker", "Plataforma para la ejecución y administración de API", $tags="")[[../../broker/context/]]
 System(SoftwareDifusióndeContenidos, "Software Difusión de Contenidos", "Gestión de contenidos para la Universidad", $tags="")[[../container/]]
 
 Rel_D(Usuario, SoftwareDifusióndeContenidos, "Consume Contenido", $tags="")
