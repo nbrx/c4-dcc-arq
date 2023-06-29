@@ -115,6 +115,7 @@ workspace "Sistema de Difusión de Contenidos" {
                 view -> controler "request user data"
                 view -> models "display data getter"
                 controler -> apiDifusionContenidos "request data from API"
+            
                 
             }
 
