@@ -1,4 +1,5 @@
 # SISTEMA DE DIFUSIÓN CONTENIDOS
+https://github.com/nbrx/c4-dcc-arq
 
 ## Introducción
 El Departamento de Ciencias de la Computación (DCC) de la Universidad de Chile desde su creación a la fecha ha desarrollado una serie de aplicaciones a nivel Institucional, las que están disponibles para la comunidad universitaria. Dentro de estas aplicaciones, el departamento de difusión posee  un sitio web estático, en el que el contenido creado por el resto de las aplicaciones (por ejemplo u-noticias) debe ser subido de forma manual. Este último sitio busca ser reemplazado por un nuevo sistema capaz de proveer contenido dinámico integrado con las otras aplicaciones del departamento.

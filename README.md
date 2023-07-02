@@ -19,6 +19,7 @@ structurizr-site-generatr serve -w modelv2.dsl
 # crear el sitio estático con structurizr-site-generatr 
 structurizr-site-generatr generate-site -w modelv2.dsl
 
+
 # Generar especificación en puml y crear las imagenes con kroki 
 # realiza un cleanup del direcotorio
 rm -rf plantuml curl.sh
@@ -26,7 +27,7 @@ rm -rf plantuml curl.sh
 # realiza el export a formato planuml 
 structurizr.sh export -workspace structurizr-1-workspace.json -format plantuml -output plantuml 
 
-# Genera los archivos SVG 
+# Genera los archivos SVG usando https://kroki.io
 for i in $(ls plantuml)
 do
  echo "curl https://kroki.io/plantuml/svg --data-binary '@plantuml/$i' > plantuml/$i.svg" >> curl.sh
