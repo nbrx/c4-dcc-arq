@@ -32,7 +32,7 @@
         </ul>
         <p class="menu-label">Software systems</p>
         <ul class="menu-list has-site-branding">
-          <li><a href="../../../base-de-datos-sistema-de-difusión-de-contenidos/" class="">Base de datos Sistema de Difusión de Contenidos</a><a href="../../../broker/" class="">Broker</a><a href="../../../pubsub/" class="">PubSub</a><a href="../../../sistema-de-tv/" class="">Sistema de TV</a><a href="../../" class="is-active">Software Difusión de Contenidos</a><a href="../../../u-campus/" class="">U-Campus</a><a href="../../../u-noticias/" class="">U-Noticias</a><a href="../../../u-paper/" class="">U-Paper</a></li>
+          <li><a href="../../../cuentas-u-chile/" class="">cuentas u-chile</a><a href="../../../sistema-de-tv/" class="">Sistema de TV</a><a href="../../" class="is-active">Software Difusión de Contenidos</a><a href="../../../u-campus/" class="">U-Campus</a><a href="../../../u-noticias/" class="">U-Noticias</a><a href="../../../u-paper/" class="">U-Paper</a><a href="../../../u-proyectos/" class="">u-proyectos</a></li>
         </ul>
       </aside>
       <div class="container is-fluid has-background-white">
@@ -41,9 +41,9 @@
         <div class="tabs mt-3">
           <ul>
             <li><a href="../../" class="">Info</a></li>
-            <li><a href="../../context/" class="">Context views</a></li>
             <li><a href="../../container/" class="">Container views</a></li>
             <li><a href="../../component/" class="">Component views</a></li>
+            <li><a href="../../deployment/" class="">Deployment views</a></li>
             <li><a href="../../dependencies/" class="">Dependencies</a></li>
             <li class="is-active"><a href="../" class="is-active">Decisions</a></li>
             <li><a href="../../sections/" class="">Documentation</a></li>
@@ -57,10 +57,12 @@
  <li>Date: 2023-06-11</li>
 </ul>
 <h2>Context and Problem Statement</h2>
-<p>especificar</p>
+<p>En un sistema que requiere desplegar información de diversas fuentes que provienen de sistemas que no se pueden modificar es un patrón de mensajería permitiría capturar los eventos de DML de la base de datos para despachar en formato de mensajes a un canal sin saber quién los va a recibir. Es responsabilidad del canal entregar una copia de los mensajes a cada suscriptor.</p>
 <h2>Decision Drivers</h2>
 <ul>
- <li>falta</li>
+ <li>Desplegar información de sistemas que no se pueden modificar.</li>
+ <li>Disminuir complejidad en los desarrollos</li>
+ <li>Disminuir complejidad de administración</li>
 </ul>
 <h2>Considered Options</h2>
 <ul>
@@ -68,11 +70,24 @@
  <li>Pipe and Filter</li>
 </ul>
 <h2>Decision Outcome</h2>
-<p>especificar</p>
+<p>Las Plataformas que implementan Pub/Sub, Es la mejor opción dado que la intervención es a nivel de base de datos y no son invasivas a la modificación de una aplicación, debido que replican a nivel de datalog los datos a otra base de datos o almacenamiento en la nube.</p>
 <h2>Pros and Cons of the Options</h2>
-<p>Especificars</p>
+<h3>Pros</h3>
+<ul>
+ <li>
+  <p><em><strong>Bajo acoplamiento</strong></em>: Los publicadores están vagamente vinculados a los suscriptores y ni siquiera necesitan saber de su existencia. Los publicadores y suscriptores pueden permanecer ignorantes de la topología del sistema. Cada uno puede continuar funcionando normalmente independientemente del otro.</p></li>
+ <li>
+  <p><em><strong>Escalabilidad</strong></em>: Pub/sub brinda una mejor escalabilidad que el cliente-servidor tradicional, a través de operación paralela, almacenamiento en caché de mensajes, enrutamiento basado en árbol o basado en red.</p></li>
+</ul>
+<h3>Cons</h3>
+<ul>
+ <li>
+  <p>Problemas de entrega de mensajes: Un sistema pub/sub debe diseñarse cuidadosamente para poder proporcionar propiedades de sistema más sólidas que una aplicación en particular podría requerir, como la entrega asegurada.</p></li>
+ <li>
+  <p>Almacenamiento Distribuído: Un sistema pub/sub debe diseñarse para escalar el almacenamiento compartido de los nodos que estarán desplegados en la infrastructura y deben estar dimensionados para contener el historico de eventos a mantener para la reconstrucción de los eventos y de la transaccionalidad de los sistemas.</p></li>
+</ul>
 <h3>Patron Seleccionado</h3>
-<p>Especificar</p></div>
+<p><em><strong>Pub/Sub</strong></em></p></div>
         </div>
       </div>
     </div>

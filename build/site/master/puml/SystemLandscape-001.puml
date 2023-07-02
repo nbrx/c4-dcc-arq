@@ -2,35 +2,34 @@
 set separator none
 title System Landscape
 
-left to right direction
+top to bottom direction
 
 !include <C4/C4>
 !include <C4/C4_Context>
 
 Person(Usuario, "Usuario", "Comunidad DCC, Universitaria y publico en general", $tags="")
-Person(ÁreadeDifusión, "Área de Difusión", "Área encargada de crear distintos contenidos para el departamento", $tags="")
-System(SistemadeTV, "Sistema de TV", "Sistema de visualización de noticias y eventos en los monitores instalados en los pasillos del DCC", $tags="")
 System(UNoticias, "U-Noticias", "Sistema de publicación noticias", $tags="")
-Person(ÁreadeSistemas, "Área de Sistemas", "", $tags="")
 System(UCampus, "U-Campus", "Sistema gestión docente", $tags="")
-Person(Docentes, "Docentes", "", $tags="")
+Person(ÁreadeDifusión, "Área de Difusión", "Área encargada de crear distintos contenidos para el departamento", $tags="")
 System(UPaper, "U-Paper", "Sistema gestión documentos de investigación científica", $tags="")
-System(Broker, "Broker", "Plataforma para la ejecución y administración de API", $tags="")
-System(BasededatosSistemadeDifusióndeContenidos, "Base de datos Sistema de Difusión de Contenidos", "", $tags="")
 System(SoftwareDifusióndeContenidos, "Software Difusión de Contenidos", "Gestión de contenidos para la Universidad", $tags="")
-System(PubSub, "PubSub", "Streaming Messaging", $tags="")
+Person(ÁreadeSistemas, "Área de Sistemas", "", $tags="")
+Person(Docentes, "Docentes", "", $tags="")
+System(SistemadeTV, "Sistema de TV", "Sistema de visualización de noticias y eventos en los monitores instalados en los pasillos del DCC", $tags="")
+System(cuentasuchile, "cuentas u-chile", "Sistema que administra la identida, autorización y autenticación de las cuentas de usuario de la Uniersidad de Chile", $tags="")
+System(uproyectos, "u-proyectos", "Sistema que administra los proyectos de la Uniersidad de Chile", $tags="")
 
-Rel_D(PubSub, BasededatosSistemadeDifusióndeContenidos, "recibe replica estructura", $tags="")
 Rel_D(UNoticias, SistemadeTV, "Muetra contenido en TV", $tags="")
-Rel_D(UCampus, PubSub, "replica estructura", $tags="")
-Rel_D(UPaper, PubSub, "replica papers", $tags="")
-Rel_D(Broker, UNoticias, "crea noticia", $tags="")
+Rel_D(ÁreadeDifusión, UNoticias, "administra notificas", $tags="")
 Rel_D(Usuario, SoftwareDifusióndeContenidos, "Consume Contenido", $tags="")
 Rel_D(Docentes, SoftwareDifusióndeContenidos, "Escribe un blog", $tags="")
 Rel_D(ÁreadeDifusión, SoftwareDifusióndeContenidos, "Publica y Gestiona Contenido de Difusión", $tags="")
 Rel_D(ÁreadeSistemas, SoftwareDifusióndeContenidos, "Administra y opera la infraestructura", $tags="")
-Rel_D(SoftwareDifusióndeContenidos, Broker, "request data from API", $tags="")
-Rel_D(Broker, BasededatosSistemadeDifusióndeContenidos, "Lee y escribe", $tags="")
+Rel_D(SoftwareDifusióndeContenidos, UNoticias, "Consume Servicio Backend U-Noticias", "service", $tags="")
+Rel_D(SoftwareDifusióndeContenidos, UCampus, "Consume Servicio Backend U-Campus", "service", $tags="")
+Rel_D(SoftwareDifusióndeContenidos, cuentasuchile, "verifica autenticación/autorización", "OIDC", $tags="")
+Rel_D(uproyectos, SoftwareDifusióndeContenidos, "replica proyectos de investigación", "pubsub", $tags="")
+Rel_D(UPaper, SoftwareDifusióndeContenidos, "replica publicaciones cientificas", "pubsub", $tags="")
 
 SHOW_LEGEND(true)
 @enduml

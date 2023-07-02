@@ -32,7 +32,7 @@
         </ul>
         <p class="menu-label">Software systems</p>
         <ul class="menu-list has-site-branding">
-          <li><a href="../../../base-de-datos-sistema-de-difusión-de-contenidos/" class="">Base de datos Sistema de Difusión de Contenidos</a><a href="../../../broker/" class="">Broker</a><a href="../../../pubsub/" class="">PubSub</a><a href="../../../sistema-de-tv/" class="">Sistema de TV</a><a href="../../" class="is-active">Software Difusión de Contenidos</a><a href="../../../u-campus/" class="">U-Campus</a><a href="../../../u-noticias/" class="">U-Noticias</a><a href="../../../u-paper/" class="">U-Paper</a></li>
+          <li><a href="../../../cuentas-u-chile/" class="">cuentas u-chile</a><a href="../../../sistema-de-tv/" class="">Sistema de TV</a><a href="../../" class="is-active">Software Difusión de Contenidos</a><a href="../../../u-campus/" class="">U-Campus</a><a href="../../../u-noticias/" class="">U-Noticias</a><a href="../../../u-paper/" class="">U-Paper</a><a href="../../../u-proyectos/" class="">u-proyectos</a></li>
         </ul>
       </aside>
       <div class="container is-fluid has-background-white">
@@ -41,9 +41,9 @@
         <div class="tabs mt-3">
           <ul>
             <li><a href="../../" class="">Info</a></li>
-            <li><a href="../../context/" class="">Context views</a></li>
             <li><a href="../../container/" class="">Container views</a></li>
             <li><a href="../../component/" class="">Component views</a></li>
+            <li><a href="../../deployment/" class="">Deployment views</a></li>
             <li><a href="../../dependencies/" class="">Dependencies</a></li>
             <li class="is-active"><a href="../" class="is-active">Decisions</a></li>
             <li><a href="../../sections/" class="">Documentation</a></li>
@@ -57,7 +57,13 @@
  <li>Date: 2023-06-11</li>
 </ul>
 <h2>Context and Problem Statement</h2>
-<p>El diseño e implementación de una API requiere tener en cuenta varios aspectos técnicos, requerimientos no funcionales y patrones de software, que involucra además administrar varios tipos de escenarios de consumo, tales como: • Diversas opciones de proveedores de seguridad y estándares. • Clientes de aplicación con requerimientos diferentes a las provistas por los servicios existentes. • Composición de datos para vistas específicas para aplicaciones. • Condiciones de performance de red diferentes por clientes de aplicación. • Rutas de acceso localizadas en diferentes instancias On-premises o Cloud. • Servicios que usan diversos protocolos. • Microservicios. ¿De qué manera se pueden abordar estos requerimientos asociados al uso de APIs?</p>
+<p>La Exposición de servicios internet debe abarcar consideraciones de seguridad, ratios de uso, monitoreo y métricas:</p>
+<ul>
+ <li>Securitizar APIs con OpenID Connect</li>
+ <li>Instalación Api Gateway on-premises y cloud (AWS, Azure, GCP, etc), y por lo tanto cercano a los servicios que se busca exponer.</li>
+ <li>Realizar una gestión sobre cuotas de peticiones</li>
+ <li>Realizar una gestión sobre tasa de peticiones</li>
+</ul>
 <h2>Decision Drivers</h2>
 <ul>
  <li>Disminuir complejidad de administración.</li>
@@ -71,17 +77,23 @@
  <li>Cluster de Web Server por DNS</li>
 </ul>
 <h2>Decision Outcome</h2>
-<p>Chosen option: "Plataforma API Management y GateWay", Es la mejor opción dado que normalmente estas plataformas se implementan con Load Balancer y Cluster de Servidores Web. Además incorpora gestión de API y abstracción de localización de los recursos.</p>
-<h2>Pros and Cons of the Options</h2>
-<p>Especificar</p>
-<h3>Plataforma API Management y GateWay</h3>
-<p>La Exposición de servicios internet debe abarcar consideraciones de seguridad, ratios de uso, monitoreo y métricas. La plataforma API Management y GateWay viene a cubrir estas consideraciones. En este contexto permite:</p>
+<p>Las Plataformas de API Management y Gateway, Es la mejor opción dado que normalmente estas plataformas se implementan con Load Balancer y Cluster de Servidores Web. Además incorpora gestión de API y abstracción de localización de los recursos.</p>
+<h2>Pros and Cons</h2>
+<h3>Pros</h3>
 <ul>
- <li>Securitizar APIs con OpenID Connect</li>
- <li>Instalación Api Gateway on-premises y cloud (AWS, Azure, GCP, etc), y por lo tanto cercano a los servicios que se busca exponer.</li>
- <li>Realizar una gestión sobre cuotas de peticiones</li>
- <li>Realizar una gestión sobre tasa de peticiones</li>
-</ul></div>
+ <li>Agrega Seguridad via Configuración en un entorno no seguro (Internet).</li>
+ <li>Se logra gestionar aspectos como la limitación de velocidad, el control de acceso de usuarios, la autorización de tokens, el escalado, reducir complejidad.</li>
+ <li>Mpnitoreo y análisis que ayudan a los desarrolladores a depurar y crear infraestructuras que pueden escalar con facilidad</li>
+</ul>
+<h3>Contras</h3>
+<ul>
+ <li><em><strong>Curva de aprendizaje</strong></em></li>
+ <li><em><strong>Único punto de falla</strong></em></li>
+ <li><em><strong>Requiere una orquestación de servicios</strong></em></li>
+ <li><em><strong>Degradación del rendimiento:</strong></em> es una preocupación debido a la multitud de escenarios que manejará API Gateway y puede afectar la velocidad y la confiabilidad de su aplicación.</li>
+</ul>
+<h3>Patron Seleccionado</h3>
+<p><em><strong>Plataforma API Management y GateWay</strong></em></p></div>
         </div>
       </div>
     </div>

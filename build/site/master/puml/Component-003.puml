@@ -1,30 +1,31 @@
 @startuml
 set separator none
-title PubSub - Message pubsub - Components
+title Software Difusión de Contenidos - Message pubsub - Components
 
 left to right direction
 
 !include <C4/C4>
 !include <C4/C4_Context>
+!include <C4/C4_Container>
 !include <C4/C4_Component>
 
-System(BasededatosSistemadeDifusióndeContenidos, "Base de datos Sistema de Difusión de Contenidos", "", $tags="")
+ContainerDb(SoftwareDifusióndeContenidos.DBMSDifusióndeContenidos, "DBMS Difusión de Contenidos", "", $tags="")
+System(uproyectos, "u-proyectos", "Sistema que administra los proyectos de la Uniersidad de Chile", $tags="")
 System(UPaper, "U-Paper", "Sistema gestión documentos de investigación científica", $tags="")
-System(UCampus, "U-Campus", "Sistema gestión docente", $tags="")
 
-Container_Boundary("PubSub.Messagepubsub_boundary", "Message pubsub", $tags="") {
-  Component(PubSub.Messagepubsub.PublicadorUPaper, "Publicador U-Paper", "", $tags="")
-  Component(PubSub.Messagepubsub.SubcriptorUCampus, "Subcriptor U-Campus", "", $tags="")
-  Component(PubSub.Messagepubsub.SubcriptorUPaper, "Subcriptor U-Paper", "", $tags="")
-  Component(PubSub.Messagepubsub.PublicadorUCampus, "Publicador U-Campus", "", $tags="")
+Container_Boundary("SoftwareDifusióndeContenidos.Messagepubsub_boundary", "Message pubsub", $tags="") {
+  Component(SoftwareDifusióndeContenidos.Messagepubsub.PublicadorUPaper, "Publicador U-Paper", "", $tags="")
+  Component(SoftwareDifusióndeContenidos.Messagepubsub.PublicadorUProyectos, "Publicador U-Proyectos", "", $tags="")
+  Component(SoftwareDifusióndeContenidos.Messagepubsub.SubcriptorUProyectos, "Subcriptor U-Proyectos", "Suscriptor para replica de datos hacia el sistema de difusión de contenidos", $tags="")
+  Component(SoftwareDifusióndeContenidos.Messagepubsub.SubcriptorUPaper, "Subcriptor U-Paper", "Suscriptor para replica de datos hacia el sistema de difusión de contenidos", $tags="")
 }
 
-Rel_D(PubSub.Messagepubsub.PublicadorUCampus, PubSub.Messagepubsub.SubcriptorUCampus, "subcribe replica estructura", $tags="")
-Rel_D(PubSub.Messagepubsub.SubcriptorUCampus, BasededatosSistemadeDifusióndeContenidos, "recibe replica estructura", $tags="")
-Rel_D(PubSub.Messagepubsub.PublicadorUPaper, PubSub.Messagepubsub.SubcriptorUPaper, "subcribe replica papers", $tags="")
-Rel_D(PubSub.Messagepubsub.SubcriptorUPaper, BasededatosSistemadeDifusióndeContenidos, "recibe replica papers", $tags="")
-Rel_D(UCampus, PubSub.Messagepubsub.PublicadorUCampus, "replica estructura", $tags="")
-Rel_D(UPaper, PubSub.Messagepubsub.PublicadorUPaper, "replica papers", $tags="")
+Rel_D(uproyectos, SoftwareDifusióndeContenidos.Messagepubsub.PublicadorUProyectos, "replica proyectos de investigación", "pubsub", $tags="")
+Rel_D(SoftwareDifusióndeContenidos.Messagepubsub.PublicadorUProyectos, SoftwareDifusióndeContenidos.Messagepubsub.SubcriptorUProyectos, "subcribe replica u-proyectos", "pubsub", $tags="")
+Rel_D(SoftwareDifusióndeContenidos.Messagepubsub.SubcriptorUProyectos, SoftwareDifusióndeContenidos.DBMSDifusióndeContenidos, "recibe replica u-proyectos", "pubsub", $tags="")
+Rel_D(UPaper, SoftwareDifusióndeContenidos.Messagepubsub.PublicadorUPaper, "replica publicaciones cientificas", "pubsub", $tags="")
+Rel_D(SoftwareDifusióndeContenidos.Messagepubsub.PublicadorUPaper, SoftwareDifusióndeContenidos.Messagepubsub.SubcriptorUPaper, "subcribe replica u-papers", "pubsub", $tags="")
+Rel_D(SoftwareDifusióndeContenidos.Messagepubsub.SubcriptorUPaper, SoftwareDifusióndeContenidos.DBMSDifusióndeContenidos, "recibe replica u-papers", "pubsub", $tags="")
 
 SHOW_LEGEND(true)
 @enduml

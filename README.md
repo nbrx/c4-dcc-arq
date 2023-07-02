@@ -10,9 +10,37 @@ docker run -it --rm -p 8080:8080 -v /mnt/data/structurizr/docker:/usr/local/stru
 # Publicar en server
 structurizr.sh push -url http://146.190.142.96:8080/api -id 1 -key <key> -secret <secret> -w model.dsl
 
+structurizr.sh pull -url http://146.190.142.96:8080/api -id 1 -key <key> -secret <secret>
+
 
 # Generar sitio usando structurizr-site-generatr
-structurizr-site-generatr serve -w model.dsl
+structurizr-site-generatr serve -w modelv2.dsl
 
 # crear el sitio estático con structurizr-site-generatr 
-structurizr-site-generatr generate-site -w model.dsl
+structurizr-site-generatr generate-site -w modelv2.dsl
+
+# Generar especificación en puml y crear las imagenes con kroki 
+# realiza un cleanup del direcotorio
+rm -rf plantuml curl.sh
+
+# realiza el export a formato planuml 
+structurizr.sh export -workspace structurizr-1-workspace.json -format plantuml -output plantuml 
+
+# Genera los archivos SVG 
+for i in $(ls plantuml)
+do
+ echo "curl https://kroki.io/plantuml/svg --data-binary '@plantuml/$i' > plantuml/$i.svg" >> curl.sh
+done
+chmod u+x curl.sh
+./curl.sh
+
+# para mejorar la velocidad usar:
+docker run -p 8000:8000 yuzutech/kroki
+
+# Genera los archivos SVG 
+for i in $(ls plantuml)
+do
+ echo "curl http://localhost:8000/plantuml/svg --data-binary '@plantuml/$i' > plantuml/$i.svg" >> curl.sh
+done
+chmod u+x curl.sh
+./curl.sh

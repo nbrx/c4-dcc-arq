@@ -6,21 +6,24 @@ left to right direction
 
 !include <C4/C4>
 !include <C4/C4_Context>
+!include <C4/C4_Container>
 !include <C4/C4_Component>
 
-System(Broker, "Broker", "Plataforma para la ejecución y administración de API", $tags="")
+Container(SoftwareDifusióndeContenidos.Gateway, "Gateway", "", $tags="")
 
 Container_Boundary("SoftwareDifusióndeContenidos.SitioWebPublico_boundary", "Sitio Web Publico", $tags="") {
   Component(SoftwareDifusióndeContenidos.SitioWebPublico.Modelo, "Modelo", "", $tags="")
   Component(SoftwareDifusióndeContenidos.SitioWebPublico.Vista, "Vista", "", $tags="")
   Component(SoftwareDifusióndeContenidos.SitioWebPublico.Controlador, "Controlador", "", $tags="")
+  Component(SoftwareDifusióndeContenidos.SitioWebPublico.AdaptadorFormatoUNoticias, "Adaptador Formato U-Noticias", "", $tags="")
 }
 
 Rel_D(SoftwareDifusióndeContenidos.SitioWebPublico.Controlador, SoftwareDifusióndeContenidos.SitioWebPublico.Modelo, "pulls data setter", $tags="")
 Rel_D(SoftwareDifusióndeContenidos.SitioWebPublico.Controlador, SoftwareDifusióndeContenidos.SitioWebPublico.Vista, "push data setters", $tags="")
 Rel_D(SoftwareDifusióndeContenidos.SitioWebPublico.Vista, SoftwareDifusióndeContenidos.SitioWebPublico.Controlador, "request user data", $tags="")
 Rel_D(SoftwareDifusióndeContenidos.SitioWebPublico.Vista, SoftwareDifusióndeContenidos.SitioWebPublico.Modelo, "display data getter", $tags="")
-Rel_D(SoftwareDifusióndeContenidos.SitioWebPublico.Controlador, Broker, "request data from API", $tags="")
+Rel_D(SoftwareDifusióndeContenidos.SitioWebPublico.Controlador, SoftwareDifusióndeContenidos.Gateway, "Consume Servicio API SDC", "broker", $tags="")
+Rel_D(SoftwareDifusióndeContenidos.SitioWebPublico.Controlador, SoftwareDifusióndeContenidos.SitioWebPublico.AdaptadorFormatoUNoticias, "Adapta formato para Sitio Público", "library", $tags="")
 
 SHOW_LEGEND(true)
 @enduml
